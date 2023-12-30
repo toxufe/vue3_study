@@ -7,7 +7,7 @@ let flag = ref(true);
 
 <template>
     <button @click="flag = !flag">切换</button>
-    <Transition
+    <Transition :duration="1000"
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__fadeOut">
         <div v-if="flag" class="box"></div>

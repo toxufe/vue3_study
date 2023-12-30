@@ -3,6 +3,7 @@
 ### gsap js动画库
 https://gsap.com/docs/v3/Installation
 npm install gsap -S
+import gasp from 'gasp'
 
 ### animate.css
 https://animate.style/

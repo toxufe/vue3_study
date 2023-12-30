@@ -1,0 +1,33 @@
+$namespace: fly !default;
+$b-sep: "-" !default;
+$e-sep: "__" !default;
+$m-sep: "--" !default;
+
+
+@mixin b($name) {
+    .#{$namespace}#{$b-sep}#{$name} {
+        @content;
+    }
+}
+
+@mixin e($name) {
+    $parent: &;
+
+    @at-root {
+        #{$parent}#{$e-sep}#{$name} {
+            @content;
+        }
+    }
+
+}
+
+@mixin m($name) {
+    $parent: &;
+
+    @at-root {
+        #{$parent}#{$m-sep}#{$name} {
+            @content;
+        }
+    }
+
+}

@@ -3,10 +3,52 @@ import { ref } from "vue";
 import "animate.css";
 
 let flag = ref(true);
+const beforeEnter = (el: Element) => {
+    console.log("显示：动画之前", el);
+};
+const enter = (el: Element) => {
+    console.log("显示：动画曲线", el);
+};
+const afterEnter = (el: Element) => {
+    console.log("显示：动画完成", el);
+};
+const enterCancelled = (el: Element) => {
+    console.log("显示：动画被打断", el);
+};
+
+const beforeLeave = (el: Element) => {
+    console.log("隐藏：动画之前", el);
+};
+const leave = (el: Element) => {
+    console.log("隐藏：动画曲线", el);
+};
+const afterLeave = (el: Element) => {
+    console.log("隐藏：动画完成", el);
+};
+const leaveCancelled = (el: Element) => {
+    console.log("隐藏：动画被打断", el);
+};
+
+
+
+
 </script>
 
 <template>
     <h3>transition生命周期</h3>
+    <button @click="flag = !flag">切换</button>
+    <Transition 
+    @before-enter="beforeEnter" 
+    @enter="enter" 
+    @after-enter="afterEnter" 
+    @enter-cancelled="enterCancelled"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    @leave-cancelled="leaveCancelled"
+    >
+        <div v-if="flag" class="box"></div>
+    </Transition>
 
     <hr />
 

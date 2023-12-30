@@ -6,18 +6,30 @@ let flag = ref(true);
 </script>
 
 <template>
+    <h3>transition生命周期</h3>
+
+    <hr />
+
+    <h3>transiton动画</h3>
     <button @click="flag = !flag">切换</button>
-    <Transition :duration="1000"
+    <Transition
+        :duration="1000"
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__fadeOut">
         <div v-if="flag" class="box"></div>
     </Transition>
 
+    <div style="height: 40px"></div>
+    <Transition
+        :duration="{ enter: 50, leave: 2000 }"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut">
+        <div v-if="flag" class="box"></div>
+    </Transition>
 
+    <div style="height: 40px"></div>
 
-    <div style="height: 40px;"></div>
-
-    <!-- <div class="box animate__animated animate__bounce animate__slow animate__infinite">Example</div> -->
+    <div class="box animate__animated animate__bounce animate__slow animate__repeat-2">Example</div>
 </template>
 
 <style scoped lang="scss">
@@ -25,7 +37,7 @@ let flag = ref(true);
     width: 200px;
     height: 200px;
     background-color: red;
-    color: #FFF;
+    color: #fff;
 }
 
 // .box {

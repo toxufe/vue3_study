@@ -1,5 +1,12 @@
 
 
+### gsap js动画库
+https://gsap.com/docs/v3/Installation
+npm install gsap -S
+
+### animate.css
+https://animate.style/
+
 ### Changelog tool
 changelog init             - Create a new, empty npx changelog.
 changelog add -m [message] - Adds a new line to the npx changelog.

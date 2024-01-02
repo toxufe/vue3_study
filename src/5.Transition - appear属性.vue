@@ -2,6 +2,11 @@
 import { ref } from "vue";
 import "animate.css";
 
+/**
+ * appear 
+ * 首次渲染的时候，帮我们执行动画。
+ */
+
 let flag = ref(true);
 </script>
 

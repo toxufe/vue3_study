@@ -6,21 +6,30 @@ let flag = ref(true);
 const beforeEnter = (el: Element) => {
     console.log("显示：动画之前", el);
 };
-const enter = (el: Element) => {
-    console.log("显示：动画曲线", el);
+const enter = (el: Element,done:Function) => {
+    
+    // setTimeout(() => {
+    //     console.log("显示：动画曲线", el);
+       
+    // }, 3000);
+
+    done();
 };
 const afterEnter = (el: Element) => {
     console.log("显示：动画完成", el);
 };
 const enterCancelled = (el: Element) => {
-    console.log("显示：动画被打断", el);
+    // console.log("显示：动画被打断", el);
 };
 
 const beforeLeave = (el: Element) => {
     console.log("隐藏：动画之前", el);
 };
-const leave = (el: Element) => {
-    console.log("隐藏：动画曲线", el);
+const leave = (el: Element,done:Function) => {
+    setTimeout(() => {
+        console.log("隐藏：动画曲线", el);
+        done();
+    }, 5000);
 };
 const afterLeave = (el: Element) => {
     console.log("隐藏：动画完成", el);

@@ -22,12 +22,18 @@
     3. setup 函数模式
     v-show 可以使用
     ref tempate 会自动解包。tsx中并不会
-    v-if 不支持
+    v-if 不支持  js三元表达式 代替
     js的编程思想 js三元表达式
+
+    map 代替 v-for
+
+    单花括号 代替 v-bind
+
+    props emits
 
     -->
 
-    <xxx></xxx>
+    <xxx name="name属性传递"></xxx>
 </template>
 <script setup lang="ts">
 import xxx from './App'

@@ -31,11 +31,25 @@
 
     props emits
 
-    -->
+    事件 onClick 代替 @click
+    onClick={xxx} 代替 @click="xxx"
 
+    最复杂的 插槽 slots
+
+    -->
+    <xxx @on-click="getItem"></xxx>
     <xxx name="name属性传递"></xxx>
 </template>
 <script setup lang="ts">
 import xxx from './App'
+
+interface Props {
+    name?: string;
+}
+
+
+const getItem = (item:Props)=>{
+    console.log("--------------------",item)
+}
 </script>
 <style scoped lang="scss"></style>

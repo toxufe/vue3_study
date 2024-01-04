@@ -1,28 +1,35 @@
 <template>
-    <h1>兄弟组件传参 Mitt</h1>
+    <h1>TSX</h1>
 
-    <!-- 
-        npm install mitt -S
-        vue3 挂载全局api
-        const Mit =  mitt()
-        app.config.globalProperties.$mitt = Mit
+    <!-- 插件安装
+    npm install @vitejs/plugin-vue-jsx --save-dev
+    配置 vite.config.js
+    import { defineConfig } from "vite";
+    import uni from "@dcloudio/vite-plugin-uni";
+    import vueJsx from '@vitejs/plugin-vue-jsx'
 
+    export default defineConfig({
+    plugins: [
+        uni(),
+        vueJsx({
+        // options are passed on to @vue/babel-plugin-jsx
+        })
+    ],
+    });
 
-        typescirpt 注册
-        declare module "vue" {
-            interface ComponentCustomProperties {
-                $mitt: typeof Mit
-            }
-        }
-     -->
+    1. 直接导出一个渲染函数
+    2. options api
+    3. setup 函数模式
+    v-show 可以使用
+    ref tempate 会自动解包。tsx中并不会
+    v-if 不支持
+    js的编程思想 js三元表达式
 
-    
-    
-    
+    -->
+
+    <xxx></xxx>
 </template>
 <script setup lang="ts">
-
+import xxx from './App'
 </script>
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -1,16 +1,25 @@
 <template>
-    
+    <h1>v-model 知识点 父组件</h1>
 
-    <!-- 
-        按需自动导入 Vite、Webpack、Rspack、Rollup 和 esbuild 的 API。
-        具有 TypeScript 支持。
-        https://github.com/unplugin/unplugin-auto-import
-     -->
+    <!-- v-model vue2 value vue3  -->
+    <!-- vue3 中支持绑定多个v-model -->
+    <!-- v-model 的修饰符 v-model:name.isbt nameModifiers?:{
+        isbt
+    }  接受规范 -->
 
-     <button @click="flag=!flag">切换Flag</button>
-     <div>{{flag}}</div>
+    <div>Flat:{{ flag }}</div>
+    <div>Name: {{name}}</div>
+
+    <button @click="flag=!flag">更改啊</button>
+
+    <hr />
+
+    <h2>子组件</h2>
+    <A v-model:name.isbt="name" v-model="flag"></A>
 </template>
 <script setup lang="ts">
-    let flag = ref(false);
+import A from "@/tsx/A";
+let flag = ref<boolean>(false);
+let name = ref<string>("张三");
 </script>
 <style scoped lang="scss"></style>

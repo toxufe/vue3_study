@@ -22,7 +22,7 @@
 //     console.log("-------",size);
 // };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .div {
     width: 200px;
     height: 200px;

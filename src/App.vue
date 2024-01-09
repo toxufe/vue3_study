@@ -1,25 +1,23 @@
 <template>
-    <h1>自定义hook</h1>
-
-    <!-- 
-      
-      1. 什么是自定义hook
-         自定义hook是一个函数，其名称以use开头，函数内部可以调用其他的hook
-         自定义hook的作用：复用逻辑
-
-      实现功能，把图片地址，转成base64
-   
-   
-   -->
-    <img id="img" src="./assets/images/2.jpg" alt="" />
+    <h1>自定义hook和自定义指定 封装npm库</h1>
+    <div class="div"></div>
 </template>
 <script setup lang="ts">
-import useBase64 from "./hooks";
-useBase64({
-    el: "#img",
-}).then((base64) => {
-    // console.log(base64.dataurl);
-    document.querySelector("#img")!.src = base64.dataurl;
-})
+import { onMounted } from "vue";
+import useResize from "v-resize-fly";
+
+onMounted(() => {
+    useResize(document.querySelector(".div") as HTMLElement,(size:any)=>{
+        console.log(size);
+    })
+});
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.div {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #ccc;
+    resize: both;
+    overflow: hidden;
+}
+</style>

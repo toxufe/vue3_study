@@ -1,54 +1,32 @@
 <template>
-    <h1>自定义指令</h1>
-
-    <!-- 
-        破坏性更新
-     -->
-
-    <button @click="flag = !flag">切换</button>
-
-    <A v-show="flag" v-move:aaa.hover="{ background: 'green' }"></A>
+    <h1>自定义指令 指令简写</h1>
+    <div class="btns">
+        <button v-has-show="'shop:create'">创建</button>
+        <button v-has-show="'shop:edit'">编辑</button>
+        <button v-has-show="'shop:delete'">删除</button>
+    </div>
 </template>
 <script setup lang="ts">
-import type { Directive, DirectiveBinding } from "vue";
-import { ref } from "vue";
-import A from "@/components/lesson13/A.vue";
+import type { Directive } from "vue";
+localStorage.setItem('userId', '12');
 
-let flag = ref<boolean>(true);
-
-interface Dir {
-    background:string
-}
-
-const vMove: Directive = {
-    created() {
-        console.log("v-move created");
-    },
-    beforeMount() {
-        console.log("v-move beforeMount");
-    },
-    // mounted(...args: Array<any>) {
-    //     console.log("v-move mounted");
-    //     console.log(args);
-    // },
-
-
-    mounted(el: HTMLElement, binding: DirectiveBinding<Dir>) {
-        console.log("v-move mounted");
-        el.style.background = binding.value.background;
-    },
-    beforeUpdate() {
-        console.log("v-move beforeUpdate");
-    },
-    updated() {
-        console.log("v-move updated");
-    },
-    beforeUnmount() {
-        console.log("v-move beforeUnmount");
-    },
-    unmounted() {
-        console.log("v-move unmounted");
-    },
+const permission = [
+    '12:shop:create',
+    // '12:shop:edit',
+    // '12:shop:delete'
+];
+let userId = localStorage.getItem('userId') as string;
+const vHasShow: Directive<HTMLElement> = (el, binding) => {
+    if(!permission.includes(`${userId}:${binding.value}`)) {
+        el.style.display = 'none';
+    }
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.btns {
+    button {
+        padding: 10px 20px;
+        margin: 20px;
+    }
+}
+</style>

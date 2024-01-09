@@ -1,16 +1,19 @@
 <template>
     <h1>自定义hook和自定义指定 封装npm库</h1>
-    <div class="div"></div>
+    <div v-resize="xxxx" class="div"></div>
 </template>
 <script setup lang="ts">
-import { onMounted } from "vue";
-import useResize from "v-resize-fly";
+// import { onMounted } from "vue";
+// import useResize from "v-resize-fly";
 
-onMounted(() => {
-    useResize(document.querySelector(".div") as HTMLElement,(size:any)=>{
-        console.log(size);
-    })
-});
+// onMounted(() => {
+//     useResize(document.querySelector(".div") as HTMLElement,(size:any)=>{
+//         console.log(size);
+//     })
+// });
+const xxxx = (size:any) => {
+    console.log("-------",size);
+};
 </script>
 <style scoped lang="scss">
 .div {

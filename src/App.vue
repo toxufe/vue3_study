@@ -1,15 +1,15 @@
 <template>
-    <h1 v-dark>自定义hook和自定义指定 封装npm库</h1>
+    <h1>自定义hook和自定义指定 封装npm库</h1>
     <!-- <div v-resize="xxxx" class="div"></div> -->
 </template>
 <script setup lang="ts">
-// import useDark from 'v-usedark-fly';
-// import { onMounted } from "vue";
+import useDark from 'v-usedark-fly';
+import { onMounted } from "vue";
 
 
-// onMounted(() => {
-//     useDark()
-// });
+onMounted(() => {
+    // useDark()
+});
 // import { onMounted } from "vue";
 // import useResize from "v-resize-fly";
 

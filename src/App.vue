@@ -8,7 +8,7 @@ import { onMounted } from "vue";
 
 
 onMounted(() => {
-    // useDark()
+    useDark()
 });
 // import { onMounted } from "vue";
 // import useResize from "v-resize-fly";

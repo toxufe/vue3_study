@@ -1,5 +1,9 @@
 <template>
-    <h1>自定义hook和自定义指定 封装npm库</h1>
+    <h1>全局函数和变量</h1>
+    <hr>
+
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    
+</script>
 <style lang="scss" scoped></style>

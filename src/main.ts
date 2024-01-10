@@ -12,4 +12,25 @@ app.component('Tree', Tree);
 
 app.use(useResize);
 app.use(useDark);
+
+
+app.config.globalProperties.$env = "dev";
+app.config.globalProperties.$filter = {
+    filter<T>(str: T) {
+        return `满神-${str}`
+    }
+}
+
+type Filter = {
+    filter<T>(str: T): string
+}
+
+
+declare module 'vue' {
+    export interface ComponentCustomProperties {
+        $env: string,
+        $filter:Filter
+    }
+}
+
 app.mount('#app')

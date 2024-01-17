@@ -1,5 +1,11 @@
 <template>
     <h1>Vue3 开发 H5 适配</h1>
+
+    <!-- 
+        https://vueuse.org/
+        封装了好多自定义的hooks useCssVar
+    
+    -->
     <!-- 
         全局切换字体大小
         全局主题的一个切换
@@ -30,10 +36,30 @@ tsnode.config.json
         <div>center</div>
         <div>right</div>
     </header>
+
+    <div>
+        <button @click="update(36)">大</button>
+        <button @click="update(24)">中</button>
+        <button @click="update(14)">小</button>
+    </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCssVar } from '@vueuse/core'
+const update = (num:number)=>{
+    const size = useCssVar('--size')
+    size.value = num + 'px'
+
+    // 原生api
+    // document.documentElement.style.setProperty('--size', num + 'px')
+    // document.documentElement.style.getPropertyPriority('--size')
+}
+
+</script>
 
 <style lang="scss" scoped>
+:root {
+    --size:14px
+}
 header {
     display: flex;
     div {
@@ -41,7 +67,7 @@ header {
         line-height: 50px;
         color: #fff;
         text-align: center;
-        font-size: 20px;
+        font-size: var(--size);
     }
     div:nth-child(1) {
         background-color: #f00;

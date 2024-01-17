@@ -6,6 +6,8 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import {PostCssPxToViewport} from './plugins/postcss-px-to-viewport'
+import unoCss from 'unocss/vite'
+import {presetIcons,presetAttributify,presetUno} from 'unocss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +16,17 @@ export default defineConfig({
     vueJsx(),
     AutoImport({
       imports: ['vue'],
+    }),
+    unoCss({
+      presets:[presetIcons(),presetAttributify(),presetUno()],
+      rules:[
+        [/^m-(\d+)$/, ([, d]) => ({ margin: `${Number(d) * 10}px` })],
+        ['red',{color:'red'}],
+        ['f40',{"font-size":'40px'}],
+      ],
+      shortcuts:{
+        cike:['red']
+      }
     })
     // vitetsx()
   ],
@@ -25,7 +38,7 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        PostCssPxToViewport()
+        // PostCssPxToViewport()
       ]
     },
     preprocessorOptions: {

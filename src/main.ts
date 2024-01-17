@@ -1,4 +1,5 @@
 // import './index.css'
+import 'uno.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import Tree from './components/Tree.vue'

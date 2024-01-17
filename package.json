@@ -16,6 +16,7 @@
     "gsap": "^3.12.4",
     "lodash": "^4.17.21",
     "sass": "^1.69.5",
+    "unocss": "^0.58.3",
     "v-resize-fly": "^0.0.1",
     "v-usedark-fly": "^1.0.0",
     "vcolorpicker": "^2.0.12",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/plugin-transform-typescript": "^7.23.6",
+    "@iconify-json/mingcute": "^1.1.15",
     "@tsconfig/node18": "^18.2.2",
     "@types/babel__core": "^7.20.5",
     "@types/lodash": "^4.14.202",

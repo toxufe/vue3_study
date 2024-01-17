@@ -9,14 +9,12 @@
       * {
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
+        /* box-sizing: border-box; */
       }
-      html,body {
+      html,body,#app {
         height: 100%;
-      }
-
-      #app {
-        height: 100%;
+        /* bfc */
+        overflow: hidden;
       }
     </style>
   </head>

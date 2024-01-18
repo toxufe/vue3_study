@@ -8,7 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import {PostCssPxToViewport} from './plugins/postcss-px-to-viewport'
 import unoCss from 'unocss/vite'
 import {presetIcons,presetAttributify,presetUno} from 'unocss'
-import { log } from 'node:console'
+import {Plugin as importToCDN} from "vite-plugin-cdn-import"
 
 // https://vitejs.dev/config/
 export default ({mode}:any)=>{
@@ -31,7 +31,23 @@ export default ({mode}:any)=>{
         shortcuts:{
           cike:['red']
         }
-      })
+      }),
+      importToCDN({
+        modules: [
+            {
+                name: 'vue',
+                var: 'Vue',
+                path: `https://cdn.staticfile.org/vue/3.2.45/vue.runtime.global.prod.min.js`,
+            },
+            {
+
+                name: 'element-plus',
+                var: 'ElementPlus',
+                path: `https://cdn.staticfile.org/element-plus/2.2.28/index.full.min.js`,
+                css: 'https://cdn.staticfile.org/element-plus/2.2.28/index.min.css'
+            },
+        ]
+    }),
       // vitetsx()
     ],
     resolve: {

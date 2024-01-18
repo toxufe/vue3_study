@@ -8,7 +8,11 @@
     generic type inference for defineProps
  -->
 
- <xm @getname="xxx" :name="['a','b','c']"></xm>
+ <xm @getname="xxx" :name="['a','b','c']">
+ <template #default="{item,index}">
+{{item}} === {{index}}
+</template>
+ </xm>
 </template>
 <script setup lang="ts">
 import xm from '@/components/lession30/child.vue'

@@ -8,7 +8,7 @@ import type { PropType } from "vue";
 // console.log(props.name);
 
 defineProps<{
-    name: string[];
+    name: T[];
 }>();
 
 // defineProps({
@@ -29,13 +29,23 @@ const xxx = (name) => {
 
 // vue 3.3 内置了 defineOptions 它里面的属性跟optionsApi 一模一样
 // 常用 定义名字 小满
-defineOptions({
-    name: "xm",
-});
+// defineOptions({
+//     name: "xm",
+// });
+
+// defineSlots 只有声明 没有实现
+
+defineSlots<{
+  default(props:{item:T[],index:number}): void;
+}>();
+
+
 </script>
 
 <template>
-    <div @click="xxx(item)" v-for="item in name" class="">{{ item }}</div>
+    <div @click="xxx(item)" v-for="item in name" class=""> <slot index="0" :item="item"></slot></div>
+
+   
 </template>
 
 <style lang="scss" scoped></style>

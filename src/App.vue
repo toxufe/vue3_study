@@ -1,46 +1,115 @@
 <template>
-    <h1>Vue3 环境变量</h1>
+    <h1>Vue3 性能优化</h1>
+    <!-- 
+        浏览器分析网页加载情况
+        1. 打开开发者工具
+        2. 选择 lighthouse
+        3. 分析网页加载情况(设置根据实际情况选择)
 
 
-<!-- 
-    1	import.meta.env.MODE	string	应用运行的模式
-    2	import.meta.env.BASE_URL	string	部署应用时的基本 URL。他由base 配置项决定。
-    3	import.meta.env.PROD	boolean	应用是否运行在生产环境。
-    4	import.meta.env.DEV	boolean	应用是否运行在开发环境 (永远与 import.meta.env.PROD相反)。
-    5	import.meta.env.SSR	boolean	应用是否运行在 server 上。
-    ————————————————
-    版权声明：本文为CSDN博主「海纳老吴」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-    原文链接：https://blog.csdn.net/sensor_WU/article/details/129723074
+        分析打包完代码的体积
+        npm install rollup-plugin-visualizer
+        vite.config.ts
+        import {visualizer} from 'rollup-plugin-visualizer'
+        plugins: [
+            vue(),
+            visualizer({
+                open: true,
+                gzipSize: true,
+                brotliSize: true
+            })
+        ]
 
-    境变量文件位置说明
-    .env                # 所有情况下都会加载
-    .env.local          # 所有情况下都会加载，但会被 git 忽略
-    .env.[mode]         # 只在指定模式下加载
-    .env.[mode].local   # 只在指定模式下加载，但会被 git 忽略
-    ————————————————
-    版权声明：本文为CSDN博主「海纳老吴」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-    原文链接：https://blog.csdn.net/sensor_WU/article/details/129723074
+        Vite优化项
+        build:{
+            chunkSizeWarningLimit: 2000,// 区块大小警告限制
+            cssCodeSplit: true,// css代码分割
+            sourcemap: false,// 是否生成sourcemap 生产环境不需要
+            minify: 'terser',// 压缩器 默认terser 体积小 也可以使用esbuild 打包块
+            assetsInlineLimit: 4096,// 小于4kb的文件转换成base64
+        }
+     -->
+
+    <!-- pwa 离线缓存技术 -->
+    <!-- 
+
+        PWA离线存储技术
+npm install vite-plugin-pwa -D
+import { VitePWA } from 'vite-plugin-pwa' 
+plugins: [vue(),VitePWA(), vueJsx(),visualizer({
+      open:true
+})],
+PWA 技术的出现就是让web网页无限接近于Native 应用
+
+可以添加到主屏幕，利用manifest实现
+可以实现离线缓存，利用service worker实现
+可以发送通知，利用service worker实现
+
+————————————————
+版权声明：本文为CSDN博主「小满zs」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq1195566313/article/details/126811832
+
+        npm install vite-plugin-pwa
+        vite.config.ts
+        import { VitePWA } from 'vite-plugin-pwa'
+    
+        VitePWA({
+            workbox:{
+                cacheId:"XIaoman",//缓存名称
+                runtimeCaching:[
+                    {
+                    urlPattern:/.*\.js.*/, //缓存文件
+                    handler:"StaleWhileRevalidate", //重新验证时失效
+                    options:{
+                        cacheName:"XiaoMan-js", //缓存js，名称
+                        expiration:{
+                        maxEntries:30, //缓存文件数量 LRU算法
+                        maxAgeSeconds:30 * 24 * 60 * 60 //缓存有效期
+        
+                        }
+                    }
+                    }
+                ]
+            },
+            })
 
 
-    # //开发.env.development / production
-    VITE_MODE_NAME=development 
-    VITE_ 为前缀的变量才会暴露给经过 vite 处理的代码。
+            其他性能优化
+            图片懒加载 
+            import lazyPlugin from 'vue3-lazy'
+            <img v-lazy="user.avatar" >
 
-    预发布
-    vite build --mode staging
-    # .env.staging
-    VITE_APP_TITLE=My App (staging)
 
-    npm install http-server -g
-    hs -p 9002
--->
+            虚拟列表 elementPlus 提供
 
+            多线程 使用  new Worker 创建
+
+worker脚本与主进程的脚本必须遵守同源限制。他们所在的路径协议、域名、端口号三者需要相同
+
+const myWorker1 = new Worker("./calcBox.js"); vueuse 已经继承
+都使用postMessage发送消息
+
+worker.postMessage(arrayBuffer, [arrayBuffer]);
+都使用onmessage接收消息
+
+self.onmessage = function (e) {
+ // xxx这里是worker脚本的内容
+};
+关闭
+
+worker.terminate();    
+————————————————
+版权声明：本文为CSDN博主「小满zs」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq1195566313/article/details/126811832
+
+
+
+防抖节流 vueuse 已经集成
+防抖：在一定时间内，只执行最后一次操作
+节流：在一定时间内，只执行第一次操作
+
+      -->
 </template>
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-console.log(import.meta.env);
-
-</script>
-
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

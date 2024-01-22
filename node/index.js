@@ -6,7 +6,7 @@ const app = express()
 app.get('/xm', (req, res) => {
     res.json({
         code:200,
-        message:"请求陈功"
+        message:"happy new year!!!"
     })
 })
 

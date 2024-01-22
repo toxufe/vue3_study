@@ -9,13 +9,15 @@ import useResize from "v-resize-fly";
 import useDark from 'v-usedark-fly';
 import Loading from './components/Loading/loading'
 import myUse from './myuse'
+import {createPinia} from 'pinia'
 
-
+const pinia = createPinia();
 export const app = createApp(App);
 app.component('Tree', Tree);
 
 app.use(useResize);
 app.use(useDark);
+app.use(pinia);
 // app.use(Loading);
 
 myUse(Loading);

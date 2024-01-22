@@ -53,3 +53,15 @@ export const useTestStore = defineStore(Names.TEST, {
         }
     }
 });
+
+
+
+
+export const useBaseStore = defineStore(Names.BASE, {
+    state() {
+        return {
+            base: 0
+        }
+    },
+
+});

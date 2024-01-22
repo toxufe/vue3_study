@@ -1,5 +1,5 @@
 <template>
-    <h1>Pinia 快乐的小菠萝 插件</h1>
+    <h1>Pinia 快乐的小菠萝 api</h1>
 
     <!-- npm install pinia -S -->
 
@@ -36,7 +36,20 @@ const reset = ()=>{
 Test.$subscribe((args,state)=>{
     console.log("---",args)
     console.log("---",state)
+},{
+    detached:true,
+    deep:true,
+    flush:'post'
 });
+Test.$onAction((args)=>{
+    console.log("---",args)
+    args.after(()=>{
+        console.log("---",Test.user)
+    })
+    args.onError(()=>{
+        console.log("---",Test.user)
+    })
+},true);// 组件销毁时，依然订阅
 </script>
 
 <style lang="scss" scoped></style>

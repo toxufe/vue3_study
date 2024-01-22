@@ -30,6 +30,12 @@ export const useTestStore = defineStore(Names.TEST, {
     },
     // computed 可 缓存 修饰
     getters: {
+        newName(): string {
+            return `$-${this.name}-${this.getAge}`
+        },
+        getAge(): number {
+            return this.user.age;
+        }
 
     },
     // methods 可以同步 也可以异步

@@ -1,5 +1,5 @@
 <template>
-    <h1>Pinia 快乐的小菠萝 插件</h1>
+    <h1>Pinia 快乐的小菠萝 actions/getters</h1>
 
     <!-- npm install pinia -S -->
 
@@ -17,7 +17,6 @@
         <hr />
 
         <button @click="change()">change</button>
-        <button @click="reset()">reset</button>
     </div>
 </template>
 <script setup lang="ts">
@@ -29,14 +28,6 @@ const change = () => {
     // Test.setUser();
     Test.getUser();
 };
-
-const reset = ()=>{
-    Test.$reset();
-}
-Test.$subscribe((args,state)=>{
-    console.log("---",args)
-    console.log("---",state)
-});
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,47 +1,41 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import {} from "vue"
+import bg from "./assets/1.jpg"
+import {useStore} from './stores'
+const store = useStore()
+
+store.getList();
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="box" :style="{background:`url(${bg})`}">
+    <div class="box-left"></div>
+    <div class="box-center"></div>
+    <div class="box-right"></div>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style lang="scss">
+*{
+  margin: 0;
+  padding: 0;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+html,body,#app {
+  height: 100%;
+  overflow: hidden;
 }
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.box {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  &-left{
+    width: 400px;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
+  &-center{
+    flex: 1;
   }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  &-right{
+    width: 400px;
   }
 }
 </style>

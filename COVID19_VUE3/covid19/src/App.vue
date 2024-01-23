@@ -332,6 +332,9 @@ body,
     background-size: cover;
     color: #fff;
     &-left {
+      > div {
+        box-shadow: 0 0 10px #000;
+      }
         width: 400px;
 
         &-pie {

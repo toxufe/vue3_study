@@ -23,3 +23,7 @@ changelog add --major -m "Backwards compatibility break"
 
 changelog release
 npm version [version] --no-git-tag-version
+
+
+# router
+npm install vue-router -S

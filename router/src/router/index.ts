@@ -1,18 +1,27 @@
-import {  createRouter, createWebHistory,createWebHashHistory } from 'vue-router'
-import type {  RouteRecordRaw} from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 
 
-const routes:Array<RouteRecordRaw> = [
+const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        name: 'Home',
-        component: () => import('../views/Home.vue')
+        component: () => import('../views/Footer.vue'),
+        children: [
+            {
+                path: '',
+                name: 'Home',
+                component: () => import('../views/Home.vue')
+            },
+
+            // 动态路由参数
+            {
+                path: '/about/:id',
+                name: 'About',
+                component: () => import('../views/About.vue')
+            }
+        ]
     },
-    {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/About.vue')
-    }
+
 ]
 
 const router = createRouter({

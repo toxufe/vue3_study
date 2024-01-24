@@ -2,6 +2,18 @@
 import {} from "vue";
 import { useRouter } from "vue-router";
 
+
+/**
+ * replace 没有历史记录
+ * router.replace()
+ * <RouterLink replace></RouterLink>
+ * 
+ * router.back(-1)
+ * router.back(1)
+ * router.next()
+ * 
+ * 路由嵌套 使用常见 固定菜单，点击菜单，切换内容
+ */
 const router = useRouter();
 const toPage = (url: string) => {
     // router.push(url);
@@ -11,31 +23,31 @@ const toPage = (url: string) => {
 </script>
 
 <template>
-    <div class="">router</div>
+    <!-- <div class="">router</div>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink style="margin-left: 10px" to="/about">About</RouterLink>
 
     <hr />
     <RouterLink :to="{ name: 'Home' }">Home</RouterLink>
     <RouterLink style="margin-left: 10px" :to="{ name: 'About' }">About</RouterLink>
-    <hr />
+    <hr /> -->
     <!-- 有默认行为 会刷新页面 -->
-    <a href="/">Home</a>
-    <a style="margin-left: 10px" href="/about">About</a>
+    <!-- <a href="/">Home</a>
+    <a style="margin-left: 10px" href="/about">About</a> -->
 
-    <hr />
+    <!-- <hr /> -->
     <!--  编程式导航 -->
-    <button @click="$router.push('/')">Home</button>
-    <button style="margin-left: 10px" @click="$router.push('/about')">About</button>
+    <!-- <button @click="$router.push('/')">Home</button>
+    <button style="margin-left: 10px" @click="$router.push('/about')">About</button> -->
 
-    <hr />
+    <!-- <hr />
     <button @click="toPage('/')">Home</button>
     <button style="margin-left: 10px" @click="toPage('/about')">About</button>
 
     <hr />
     <button @click="toPage('Home')">Home</button>
-    <button style="margin-left: 10px" @click="toPage('About')">About</button>
-    <RouterView></RouterView>
+    <button style="margin-left: 10px" @click="toPage('About')">About</button>-->
+    <RouterView></RouterView> 
 </template>
 
 <style lang="scss" scoped></style>

@@ -9,6 +9,7 @@ import {} from "vue";
 <style lang="scss" scoped>
 .about {
     background: green;
+    color: white;
     width: 200px;
     height: 200px;
 }

@@ -3,10 +3,17 @@ import {} from "vue"
 </script>
 
 <template>
-  <div class="">路由守卫</div>
-  <hr>
-  
   <router-view></router-view>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body,#app {
+    height: 100%;
+    overflow: hidden;
+}
+</style>

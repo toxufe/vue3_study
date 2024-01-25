@@ -46,7 +46,12 @@ const routes: Array<RouteRecordRaw> = [
         redirect:(to)=>{
             console.log(to);
             
-            return '/user1';
+            return {
+                path: '/user1',
+                query:{
+                    aaa:111
+                }
+            };
         },
         children:[
             {

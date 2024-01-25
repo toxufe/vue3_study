@@ -3,7 +3,8 @@ import {} from "vue"
 </script>
 
 <template>
-  <div class="">Father</div>
+  <RouterLink to="/user1">user1</RouterLink>
+  <RouterLink style="margin-left: 20px;" to="/user2">user2</RouterLink>
   <hr>
   <RouterView></RouterView> 
   <RouterView name="aaa"></RouterView> 

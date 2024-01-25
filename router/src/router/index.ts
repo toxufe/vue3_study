@@ -43,16 +43,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../views/Father.vue'),
         // redirect: '/user1',
         // redirect: {path: 'user1'},
-        redirect:(to)=>{
-            console.log(to);
+        // redirect:(to)=>{
+        //     console.log(to);
             
-            return {
-                path: '/user1',
-                query:{
-                    aaa:111
-                }
-            };
-        },
+        //     return {
+        //         path: '/user1',
+        //         query:{
+        //             aaa:111
+        //         }
+        //     };
+        // },
         children:[
             {
                 path:'/user1',

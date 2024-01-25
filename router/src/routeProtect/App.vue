@@ -3,6 +3,7 @@ import {} from "vue"
 </script>
 
 <template>
+    <img src="https://static.xuehuafei.cn/i/2024/01/25/65b21e379da8b.png" alt="">
   <router-view></router-view>
 </template>
 

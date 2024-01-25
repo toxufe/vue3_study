@@ -16,6 +16,6 @@ import {} from "vue"
 
 <style lang="scss" scoped>
 a {
-    margin-right: 10px;
+    margin: 0 10px;
 }
 </style>

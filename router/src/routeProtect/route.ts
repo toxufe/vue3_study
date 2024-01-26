@@ -22,7 +22,10 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        return {top:savedPosition.top ?? 0}
+    }
 })
 
 

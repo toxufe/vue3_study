@@ -64,9 +64,10 @@ const rules = reactive<Rules>({
 
 <style lang="scss" scoped>
 .login {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 1000000px;
+    // overflow: scroll;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
 }
 </style>

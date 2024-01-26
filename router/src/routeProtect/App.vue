@@ -24,8 +24,8 @@ import 'animate.css'
     padding: 0;
 }
 
-html,body,#app {
-    height: 100%;
-    overflow: hidden;
-}
+// html,body,#app {
+//     height: 100%;
+//     overflow: hidden;
+// }
 </style>

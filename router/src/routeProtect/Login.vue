@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive ,ref} from "vue";
-import {useRouter} from "vue-router";
+import { reactive ,ref,onMounted} from "vue";
+import {useRouter,useRoute} from "vue-router";
 import { ElMessage} from "element-plus";
 import type {FormItemRule,FormInstance} from "element-plus";
 const router = useRouter();
+const route = useRoute();
 
 type Form = {
     user: string;
@@ -40,6 +41,7 @@ const rules = reactive<Rules>({
         { required: true, message: "请输入密码", trigger: "blur" },
     ],
 });
+
 </script>
 
 <template>

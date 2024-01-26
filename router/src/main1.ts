@@ -6,13 +6,23 @@ import router from './routeProtect/route'
 
 
 
+
 import loadingBar from './routeProtect/LoadingBar.vue'
 const Vnode = createVNode(loadingBar)
 render(Vnode, document.body)
 
 
+
+declare module 'vue-router' {
+    interface RouteMeta {
+      title?: string
+    }
+}  
+
+
 const whiteList = ['/'];
 router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;
     if(whiteList.includes(to.path) || localStorage.getItem('token')){
         next();
     }else{
@@ -26,5 +36,7 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
     Vnode.component?.exposed?.endLoading();
 })
+
+
 
 createApp(App).use(router).use(ElementPlus).mount('#app')

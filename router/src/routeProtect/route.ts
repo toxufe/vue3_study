@@ -6,14 +6,16 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         component: () => import('@/routeProtect/Login.vue'),
         meta:{
-            title:"我是登录页面"
+            title:"我是登录页面",
+            transition:'animate__fadeInUp'
         }
     },
     {
         path: '/home',
         component: () => import('@/routeProtect/Home.vue'),
         meta:{
-            title:"我是Home页面"
+            title:"我是Home页面",
+            transition:"animate__bounceIn",
         }
     }
 ];

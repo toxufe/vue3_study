@@ -15,7 +15,8 @@ render(Vnode, document.body)
 
 declare module 'vue-router' {
     interface RouteMeta {
-      title?: string
+      title?: string,
+      transition?:string
     }
 }  
 

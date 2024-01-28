@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        component: () => import('@/routeProtect/Login.vue'),
+        component: () => import('../routeProtect/Login.vue'),
         meta:{
             title:"我是登录页面",
             transition:'animate__fadeInUp'
@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '/home',
-        component: () => import('@/routeProtect/Home.vue'),
+        component: () => import('../routeProtect/Home.vue'),
         meta:{
             title:"我是Home页面",
             transition:"animate__bounceIn",
@@ -24,7 +24,15 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
-        return {top:savedPosition.top ?? 0}
+        if(savedPosition){
+            return {top:savedPosition.top,left:savedPosition.left}
+        }else{
+            return {
+                top:0,
+                left:0
+            }
+        }
+        
     }
 })
 

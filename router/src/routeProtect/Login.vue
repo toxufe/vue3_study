@@ -3,6 +3,7 @@ import { reactive ,ref,onMounted} from "vue";
 import {useRouter,useRoute} from "vue-router";
 import { ElMessage} from "element-plus";
 import type {FormItemRule,FormInstance} from "element-plus";
+import axios from 'axios'
 const router = useRouter();
 const route = useRoute();
 
@@ -15,8 +16,8 @@ type Rules = {
     [K in keyof Form]:Array<FormItemRule>
 }
 const formInline = reactive<Form>({
-    user: "",
-    password: "",
+    user: "admin2",
+    password: "123456",
 });
 
 const form = ref<FormInstance>();
@@ -25,7 +26,8 @@ const onSubmit = () => {
     form.value?.validate((validate)=>{
         if(validate){
             router.push({path:'/home'});
-            localStorage.setItem('token','1');
+            // localStorage.setItem('token','1');
+            initRoute();
         }else{
             ElMessage.error('请输入完整!!!');
         }
@@ -41,6 +43,20 @@ const rules = reactive<Rules>({
         { required: true, message: "请输入密码", trigger: "blur" },
     ],
 });
+
+const initRoute = async ()=>{
+    const routes = await axios.get("http://localhost:9999/login",{params:formInline});
+    routes.data.route.forEach((v:any)=>{
+        router.addRoute({
+            path:v.path,
+            name:v.name,
+            // 动态添加路由 不可以使用@ 必须使用相对路径
+            component:()=>import(`./${v.component}`)
+        })
+
+        // router.getRoutes() 获取所有的路由列表
+    });
+}
 
 </script>
 

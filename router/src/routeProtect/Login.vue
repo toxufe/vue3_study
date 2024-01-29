@@ -16,8 +16,8 @@ type Rules = {
     [K in keyof Form]:Array<FormItemRule>
 }
 const formInline = reactive<Form>({
-    user: "",
-    password: "",
+    user: "admin2",
+    password: "123456",
 });
 
 const form = ref<FormInstance>();

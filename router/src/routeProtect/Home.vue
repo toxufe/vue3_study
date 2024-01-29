@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import {} from "vue"
+import {useRouter} from 'vue-router'
+const router = useRouter();
+
 </script>
 
 <template>
-  <div class="">User</div>
-  <hr>
-  <router-link to="/demo1">demo1</router-link>
-    <router-link to="/demo2">demo2</router-link>
-    <router-link to="/demo3">demo3</router-link>
+  <div></div>
+<RouterLink v-for="item in router.getRoutes()" :to="item.path"> {{ item.name }} </RouterLink>
 </template>
 
 <style lang="scss" scoped>
-
 a {
-    margin-right: 20px;
+  margin-right: 20px;
 }
-
 </style>

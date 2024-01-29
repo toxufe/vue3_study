@@ -4,6 +4,16 @@ import {} from "vue"
 
 <template>
   <div class="">User</div>
+  <hr>
+  <router-link to="/demo1">demo1</router-link>
+    <router-link to="/demo2">demo2</router-link>
+    <router-link to="/demo3">demo3</router-link>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+a {
+    margin-right: 20px;
+}
+
+</style>

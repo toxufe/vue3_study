@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {} from "vue"
 import 'animate.css'
+
+
+
 </script>
 
 <template>

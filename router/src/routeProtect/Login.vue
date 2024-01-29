@@ -3,6 +3,7 @@ import { reactive ,ref,onMounted} from "vue";
 import {useRouter,useRoute} from "vue-router";
 import { ElMessage} from "element-plus";
 import type {FormItemRule,FormInstance} from "element-plus";
+import axios from "axios";
 const router = useRouter();
 const route = useRoute();
 
@@ -24,8 +25,7 @@ const onSubmit = () => {
     // router.push({path:'/home'});
     form.value?.validate((validate)=>{
         if(validate){
-            router.push({path:'/home'});
-            localStorage.setItem('token','1');
+            initRouter();
         }else{
             ElMessage.error('请输入完整!!!');
         }
@@ -42,9 +42,32 @@ const rules = reactive<Rules>({
     ],
 });
 
+
+
+const initRouter = async () => {
+    const result = await axios.get('http://localhost:9999/login', { params: formInline });
+    result.data.route.forEach((v: any) => {
+        
+        router.addRoute({
+            path: v.path,
+            name: v.name,
+                                    //这儿不能使用@
+            component: () => import(/* @vite-ignore */`./${v.component}`)
+        })
+        router.push('/home')
+    })
+    console.log(router.getRoutes());
+ 
+}
+
+
+
+
+
 </script>
 
 <template>
+
     <div class="login">
         <el-card class="box-card">
             <el-form ref="form" :model="formInline" :rules="rules" class="demo-form-inline">
@@ -64,10 +87,11 @@ const rules = reactive<Rules>({
 
 <style lang="scss" scoped>
 .login {
-    height: 1000000px;
-    // overflow: scroll;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 </style>

@@ -222,3 +222,9 @@ firewall-cmd --zone= public --query-port=80/tcp
 firewall-cmd --zone= public --remove-port=80/tcp --permanent
 ————————————————
 
+
+### 查看linux系统信息
+- uname -a - 显示系统信息
+- cat /etc/os-release - 查看系统版本信息
+- hostnamectl - 查看和设置系统主机名及相关信息
+- cat /etc/redhat-release - 显示运行Red Hat Linux发行版的系统的版本信息

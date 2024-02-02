@@ -92,7 +92,7 @@ chown 修改文件所属用户和用户组
 
 ### 安装Linux
 
-安装Nginx
+#### 安装Nginx
 1、安装gcc
 
 安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：
@@ -223,8 +223,85 @@ firewall-cmd --zone= public --remove-port=80/tcp --permanent
 ————————————————
 
 
+#### Nginx命令
+ - nginx -s quit 优雅的关闭方式，在退出前完成已经接受的请求处理。
+ - nginx -s reload 重载Nginx的配置文件
+ - nginx -t 检查nginx配置文件是否有语法错误，可以查看nginx的配置文件位置。
+
+
+ Nginx的主配置文件是nginx.conf，这个配置文件一共由三部分组成，分别为全局块、events块和http块。
+
+在http块中，又包含http全局块、多个server块。
+
+每个server块中，可以包含server全局块和多个location块。在同一配置块中嵌套的配置块，各个之间不存在次序关系
+
+1.全局快
+全局块是默认配置文件从开始到events块之间的一部分内容，主要设置一些影响Nginx服务器整体运行的配置指令，因此，这些指令的作用域是Nginx服务器全局。
+
+user [user] [group]  指定可以运行nginx服务的用户和用户组，只能在全局块配置 user指令在Windows上不生效，如果你制定具体用户和用户组会报警告
+worker_processes nginx进程数量worker_processes 比如设置为2 nginx将会开启一个master进程和2两个worker进程
+pid  logs/nginx.pid 存放pid文件
+error_log  logs/error.log;  全局错误日志类型 debug info warn error 存放地址
+2.events块
+events块涉及的指令主要影响Nginx服务器与用户的网络连接。常用到的设置包括是否开启对多worker process下的网络连接进行序列化，是否允许同时接收多个网络连接，选取哪种事件驱动模型处理连接请求，每个worker process可以同时支持的最大连接数等
+
+accept_mutex 默认开启-开启之后nginx 的多个worker将会以串行的方式来处理，只会有一个worker将会被唤起，其他的worker继续睡眠，如果不开启将会造成惊群效应多个worker全部唤起不过只有一个Worker能获取新连接，其它的Worker会重新进入休眠状态
+
+worker_connections 单个进程最大连接数（最大连接数=连接数+进程数）
+
+3.http块
+http块是Nginx服务器配置中的重要部分，代理、缓存和日志定义等绝大多数的功能和第三方模块的配置都可以放在这个模块中。
+
+include指令，用于引入其他的配置文件
+default_type 如果Web程序没设置，Nginx也没对应文件的扩展名，就用Nginx 里默认的 default_type定义的处理方式。default_type application/octet-stream; #nginx默认文件类型
+log_format指令，用于定义日志格式，此指令只能在http块中进行配置
+sendfile 简单来说就是启用sendfile()系统调用来替换read()和write()调用，减少系统上下文切换从而提高性能，当 nginx 是静态文件服务器时，能极大提高nginx的性能表现
+keepalive_timeout HTTP 有一个 KeepAlive 模式，它告诉 webserver 在处理完一个请求后保持这个 TCP 连接的打开状态。若接收到来自客户端的其它请求，服务端会利用这个未被关闭的连接，而不需要再建立一个连接。
+gzip 开启Gzip压缩功能， 可以使网站的css、js 、xml、html 文件在传输时进行压缩，提高访问速度, 进而优化Nginx性能
+4.server块
+每一个http块都可以包含多个server块，而每个server块就相当于一台虚拟主机，它内部可有多台主机联合提供服务，一起对外提供在逻辑上关系密切的一组服务
+
+listen指令的配置非常灵活，可以单独制定ip，单独指定端口或者同时指定ip和端口
+listen 127.0.0.1:8000;  #只监听来自127.0.0.1这个IP，请求8000端口的请求
+listen 127.0.0.1; #只监听来自127.0.0.1这个IP，请求80端口的请求（不指定端口，默认80）
+listen 9999; #监听来自所有IP，请求9999端口的请求
+listen *:9999; #和上面效果一样
+listen localhost:8000; #和第一种效果一致
+ 
+server_name nginx 允许一个虚拟主机有一个或多个名字，也可以使用通配符"*"来设置虚拟主机的名字  支持 ip 域名 通配符 正则等
+
+ server_name  localhost;
+5.location块
+每个server块中可以包含多个location块。在整个Nginx配置文档中起着重要的作用，而且Nginx服务器在许多功能上的灵活性往往在location指令的配置中体现出来
+
+location 指令可以分为以下 3 类：
+
+前缀字符串匹配
+正则表达式匹配
+用于内部跳转的命名location
+前缀字符串匹配
+精确匹配 =
+前缀匹配 ^~（立刻停止后续的正则搜索）
+按文件中顺序的正则匹配 ~或~*
+匹配不带任何修饰的前缀匹配。
+location root 
+root 指定目录的上级目录，并且该上级目录要含有locatoin指定名称的同名目录。
+
+location /img/ {
+	root /var/www/image;
+}
+若按照这种配置的话，则访问/img/目录下的文件时，nginx会去/var/www/image/img/目录下找文件
+————————————————
+
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                        
+原文链接：https://blog.csdn.net/qq1195566313/article/details/124217010
+
 ### 查看linux系统信息
 - uname -a - 显示系统信息
 - cat /etc/os-release - 查看系统版本信息
 - hostnamectl - 查看和设置系统主机名及相关信息
 - cat /etc/redhat-release - 显示运行Red Hat Linux发行版的系统的版本信息
+
+## 查看linux进程
+pe -ef | grep nginx

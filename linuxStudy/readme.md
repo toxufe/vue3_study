@@ -303,5 +303,34 @@ location /img/ {
 - hostnamectl - 查看和设置系统主机名及相关信息
 - cat /etc/redhat-release - 显示运行Red Hat Linux发行版的系统的版本信息
 
-## 查看linux进程
+### 查看linux进程
 pe -ef | grep nginx
+
+### Nginx-Vue-History-404问题
+Vue  histroy 模式 跳转路由404 问题
+
+问题原因
+
+我们的服务器是根据页面路由，去按路径寻找资源的。我们打包好的web站点只有一个html页面，不存在其他资源目录下的html，服务器找不到对应页面所以才报404。
+
+解决方案
+
+try_files $uri $uri/ /index.html;
+
+如果给出的file都没有匹配到，则重新请求最后一个参数给定的uri，就是新的location匹配
+
+常见的变量：
+
+- $uri 当前请求的 URI，但不含“？”后的参数
+- $args 当前请求的参数，即“？”后的宇符串
+- $arg_xxx 当前请求里的某个参数，“arg ”后是参数的名字
+- $http_xxx 当前请求里的 xxx 头部对应的值
+- $sent_http_xxx 返回给客户端的响应头部对应的值
+- $remote_addr 客户端IP 地址。
+- $http_cookie 获取cookie值
+- $cookie_xxx 当前请求的cookie xxx对应的值
+- $request_uri 浏览器发起的不作任何修改的请求的url中的path 如在www.baidu.com/p1/file?d=111, 其值为/p1/file?d=111
+- $uri 指当前的请求URI，不包括任何参数，反映任何内部重定向或index模块所做的修改
+- $request_method 请求方法
+
+

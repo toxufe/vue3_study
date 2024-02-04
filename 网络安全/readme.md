@@ -43,3 +43,14 @@ EXIF（Exchangeable Image File）是“可交换图像文件”的缩写，当�
 
 虫EXIF查看器alpha版
 https://exif.tuchong.com/
+
+## 蜜罐技术
+npm install ts-node -g
+npm install @types/node -D
+
+
+## 自动化UI测试
+Puppeteer
+
+npm install pnpm -g //装过可以忽略
+pnpm add puppeteer

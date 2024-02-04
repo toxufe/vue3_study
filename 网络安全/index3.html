@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script> 
+</head>
+
+<body>
+
+    <div>
+        <img width="300" height="300" id="img1" src="./a.jpg" alt="">
+        <p>非原图</p>
+    </div>
+    <div>
+        <img width="300" height="300" id="img2" src="./a.jpg" alt="">
+        <p>原图</p>
+    </div>
+    <div>
+        <img width="300" height="300" id="img3" src="./b.jpg" alt="">
+        <p>原图2</p>
+    </div>
+
+    <script>
+        const file = document.querySelector('#img3')
+        file.onload = ()=>{
+            EXIF.getData(file, function () {
+                const data = EXIF.pretty(this);
+                // const data = EXIF.getAllTags(this);
+                console.log(data);
+            }) 
+        }
+       
+    </script>
+
+</body>
+
+</html>

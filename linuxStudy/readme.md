@@ -334,3 +334,63 @@ try_files $uri $uri/ /index.html;
 - $request_method 请求方法
 
 
+### Nginx-Go-Access-日志分析器
+将我们的Linux 服务器设置为中文版
+
+```
+$ localectl  set-locale LANG=zh_CN.UTF8
+```
+
+GoAccess是一款开源、实时，运行在命令行终端下的web日志分析工具。该工具提供快速、多样的HTTP状态统计，可以令管理员不再纠结于统计各类数据，和繁杂的指令以及一大堆管道/正则表达式说byebye
+
+
+```shell
+wget http://tar.goaccess.io/goaccess-1.2.tar.gz
+tar -xzvf goaccess-1.2.tar.gz
+cd goaccess-1.2/
+./configure 
+make
+make install
+```
+
+操作手册
+
+https://www.goaccess.cc/?mod=man
+
+开启实时HTML报告分析（webSocket）
+```shell
+goaccess access.log -a -o ../html/report.html --real-time-html --log-format=COMBINED
+```
+
+#### 命令
+- 查看版本号 goaccess -V
+- 格式化日志查看 goaccess -f access.log
+- 开启实时HTML报告分析（webSocket） goaccess access.log -a -o ../html/report.html --real-time-html --log-format=COMBINED
+
+### Nginx 负载均衡 upstream
+2.权重weight
+```conf
+    upstream  node {
+        server 127.0.0.1:9001 weight=3;
+        server 127.0.0.1:9002 weight=2;
+        server 127.0.0.1:9003 weight=1;
+    }
+
+```
+
+ 3. fail_timeout backup
+fail_timeout是故障等待超时时间
+backup是备用服务器参数，可以为一个upstream设置一个backup的server，在生产server全部都出问题之后，可以自动切换到备用server上，为回复服务争取时间
+```conf
+upstream  node {
+    server 127.0.0.1:9001 fail_timeout=60;
+    server 127.0.0.1:9002 fail_timeout=20;
+    server 127.0.0.1:9003 backup;
+}
+```
+
+
+————————————————
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                    
+原文链接：https://blog.csdn.net/qq1195566313/article/details/124553203
